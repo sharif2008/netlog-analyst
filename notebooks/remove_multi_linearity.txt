@@ -1,0 +1,40 @@
+# 1. Correlation matrix
+corr_matrix = df[feature_cols].corr().abs()
+
+# 2. Remove multicollinearity
+upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
+to_drop = [column for column in upper.columns if any(upper[column] > 0.90)]
+
+print("Dropped due to multicollinearity:", to_drop)
+
+# 3. Drop redundant features
+df_reduced = df.drop(columns=to_drop)
+clean_features = [c for c in df_reduced.columns if c not in ['Attack_Binary']]
+
+# 4. Train RandomForest for importance
+X = df_reduced[clean_features].values
+y = df_reduced['Attack_Binary'].values
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42, stratify=y
+)
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+rf = RandomForestClassifier(n_estimators=300, random_state=42)
+rf.fit(X_train_scaled, y_train)
+
+# 5. Feature importance ranking
+importance_df = pd.DataFrame({
+    'feature': clean_features,
+    'rf_importance': rf.feature_importances_
+}).sort_values(by='rf_importance', ascending=False)
+
+# 6. Top 20 unique features
+top_20_unique_features = importance_df['feature'].iloc[:20].tolist()
+
+print("\nTop 20 unique important features:")
+for f in top_20_unique_features:
+    print("-", f)
