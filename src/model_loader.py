@@ -10,7 +10,7 @@ import pandas as pd
 # Model paths (relative to project root, not src folder)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_PATH = os.path.join(BASE_DIR, 'models', 'rf_cicids2017_model.pkl')
-METADATA_PATH = os.path.join(BASE_DIR, 'models', 'rf_cicids2017_metadata.pkl')
+METADATA_PATH = os.path.join(BASE_DIR, 'models', 'rf_feature_metadata.pkl')
 
 # Cache for model and metadata
 _model_cache = None
