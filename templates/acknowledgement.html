@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Acknowledgement - NIDS System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        padding: 40px;
+    }
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 2.5em;
+    }
+    .acknowledgement-section {
+        margin-bottom: 40px;
+    }
+    .acknowledgement-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        margin-bottom: 30px;
+    }
+    .acknowledgement-card h2 {
+        color: white;
+        margin-bottom: 30px;
+        font-size: 2em;
+        text-align: center;
+        border-bottom: 2px solid rgba(255,255,255,0.3);
+        padding-bottom: 15px;
+    }
+    .info-grid {
+        display: grid;
+        gap: 25px;
+        margin-top: 30px;
+    }
+    .info-item {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 20px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .info-item strong {
+        display: block;
+        font-size: 1.1em;
+        margin-bottom: 8px;
+        color: rgba(255, 255, 255, 0.95);
+    }
+    .info-item p {
+        font-size: 1.1em;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.9);
+    }
+    .team-section {
+        background: #f8f9ff;
+        padding: 30px;
+        border-radius: 10px;
+        margin-top: 30px;
+        border-left: 4px solid #667eea;
+    }
+    .team-section h3 {
+        color: #667eea;
+        margin-bottom: 20px;
+        font-size: 1.5em;
+    }
+    .team-members {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .member-card {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        flex: 1;
+        min-width: 200px;
+    }
+    .member-card h4 {
+        color: #667eea;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+    .member-card p {
+        color: #666;
+        margin: 5px 0;
+    }
+    .icon {
+        font-size: 1.2em;
+        margin-right: 8px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>🙏 Acknowledgement</h1>
+
+    <div class="acknowledgement-card">
+        <h2>Project Information</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <strong><span class="icon">👥</span>Team Number</strong>
+                <p>Team No. 9</p>
+            </div>
+            <div class="info-item">
+                <strong><span class="icon">📚</span>Course Name</strong>
+                <p>Digital Forensic</p>
+            </div>
+            <div class="info-item">
+                <strong><span class="icon">👨‍🏫</span>Instructor</strong>
+                <p>Baljeet Malhotra</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-section">
+        <h3>👥 Team Members</h3>
+        <div class="team-members">
+            <div class="member-card">
+                <h4>Md Shariful Islam</h4>
+                <p><strong>Email:</strong> <a href="mailto:islam5@unbc.ca" style="color: #667eea; text-decoration: none;">islam5@unbc.ca</a></p>
+                <p><strong>Role:</strong> Team Member</p>
+            </div>
+            <div class="member-card">
+                <h4>Anisha Kumari</h4>
+                <p><strong>Email:</strong> <a href="mailto:akumari@unbc.ca" style="color: #667eea; text-decoration: none;">akumari@unbc.ca</a></p>
+                <p><strong>Role:</strong> Team Member</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="acknowledgement-card" style="margin-top: 30px;">
+        <h2>Special Thanks</h2>
+        <div class="info-item" style="background: rgba(255, 255, 255, 0.15); margin-top: 20px;">
+            <p style="font-size: 1.1em; line-height: 1.8;">
+                We would like to express our sincere gratitude to <strong>Instructor Baljeet Malhotra</strong> for 
+                providing guidance, support, and valuable feedback throughout the development of this Network 
+                Intrusion Detection System project. We also acknowledge the Canadian Institute for Cybersecurity (CIC) 
+                for providing the CIC-IDS-2017 dataset, which was essential for training and evaluating our machine 
+                learning models.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

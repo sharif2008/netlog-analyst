@@ -225,6 +225,18 @@
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🛡️ NIDS System</div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/analysis" class="active">Analysis</a></li>
+                <li><a href="/reference">Reference</a></li>
+                <li><a href="/acknowledgement">Acknowledgement</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content-wrapper">
     <div class="container">
         <div class="header">
             <h1>🛡️ Analysis Results</h1>
@@ -287,7 +299,10 @@
             </table>
         </div>
         
-        <a href="/" class="back-btn">← Upload Another File</a>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/analysis" class="back-btn">← Upload Another File</a>
+        </div>
+    </div>
     </div>
     
     <!-- jQuery (required for DataTables) -->

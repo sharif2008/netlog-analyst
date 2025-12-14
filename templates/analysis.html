@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis - NIDS System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        padding: 40px;
+    }
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 2.5em;
+    }
+    .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 1.1em;
+    }
+    .upload-area {
+        border: 3px dashed #667eea;
+        border-radius: 10px;
+        padding: 40px;
+        text-align: center;
+        background: #f8f9ff;
+        transition: all 0.3s;
+    }
+    .upload-area:hover {
+        border-color: #764ba2;
+        background: #f0f2ff;
+    }
+    .file-input-wrapper {
+        position: relative;
+        display: inline-block;
+        margin: 20px 0;
+    }
+    .file-input {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+    .file-label {
+        display: inline-block;
+        padding: 12px 30px;
+        background: #667eea;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: background 0.3s;
+    }
+    .file-label:hover {
+        background: #764ba2;
+    }
+    .file-name {
+        margin-top: 10px;
+        color: #666;
+        font-style: italic;
+    }
+    .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2em;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: transform 0.2s;
+    }
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    .info-box {
+        background: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
+    .info-box p {
+        margin: 5px 0;
+        color: #1976d2;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>📊 Network Traffic Analysis</h1>
+    <p class="subtitle">Upload CSV file to analyze network traffic and detect potential attacks</p>
+    
+    <form action="/predict" method="post" enctype="multipart/form-data" id="uploadForm">
+        <div class="upload-area">
+            <h3>📁 Upload CSV File</h3>
+            <div class="file-input-wrapper">
+                <input type="file" name="file" id="fileInput" class="file-input" accept=".csv" required>
+                <label for="fileInput" class="file-label">Choose CSV File</label>
+            </div>
+            <div class="file-name" id="fileName">No file selected</div>
+        </div>
+        
+        <button type="submit" class="submit-btn" id="submitBtn">Analyze Network Traffic</button>
+    </form>
+    
+    <div class="info-box">
+        <p><strong>ℹ️ Instructions:</strong></p>
+        <p>• Upload a CSV file containing network traffic features</p>
+        <p>• The system will analyze each record and classify as Normal or Attack</p>
+        <p>• Results will be displayed with statistics and detailed table</p>
+        <p>• Maximum file size: 100 MB</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const fileName = document.getElementById('fileName');
+    const submitBtn = document.getElementById('submitBtn');
+    const form = document.getElementById('uploadForm');
+    
+    fileInput.addEventListener('change', function(e) {
+        if (e.target.files.length > 0) {
+            fileName.textContent = 'Selected: ' + e.target.files[0].name;
+        } else {
+            fileName.textContent = 'No file selected';
+        }
+    });
+    
+    form.addEventListener('submit', function() {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Processing...';
+    });
+</script>
+{% endblock %}
+

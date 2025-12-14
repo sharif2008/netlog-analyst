@@ -22,8 +22,23 @@ def allowed_file(filename):
 
 @app.route("/")
 def index():
-    """Home page with file upload form"""
+    """Home page with project information and model comparison"""
     return render_template('index.html')
+
+@app.route("/analysis")
+def analysis():
+    """Analysis page with CSV upload form"""
+    return render_template('analysis.html')
+
+@app.route("/reference")
+def reference():
+    """Reference page with citations and resources"""
+    return render_template('reference.html')
+
+@app.route("/acknowledgement")
+def acknowledgement():
+    """Acknowledgement page with team information and credits"""
+    return render_template('acknowledgement.html')
 
 @app.route("/predict", methods=['POST'])
 def predict_csv():

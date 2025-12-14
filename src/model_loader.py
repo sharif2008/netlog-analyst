@@ -10,7 +10,7 @@ import pandas as pd
 # Model paths (relative to project root, not src folder)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_PATH = os.path.join(BASE_DIR, 'models', 'rf_cicids2017_model.pkl')
-METADATA_PATH = os.path.join(BASE_DIR, 'models', 'rf_feature_metadata.pkl')
+METADATA_PATH = os.path.join(BASE_DIR, 'models', 'rf_cicids2017_metadata.pkl')
 
 # Cache for model and metadata
 _model_cache = None
@@ -43,9 +43,26 @@ def load_model():
     try:
         model = joblib.load(MODEL_PATH)
         metadata = joblib.load(METADATA_PATH)
+        
+        # Validate that metadata is actually a dictionary
+        if not isinstance(metadata, dict):
+            raise TypeError(
+                f"Metadata file contains {type(metadata)}, expected dict. "
+                f"Please check that {METADATA_PATH} contains the correct metadata dictionary."
+            )
+        
+        # Validate that model is a sklearn model (has predict method)
+        if not hasattr(model, 'predict'):
+            raise TypeError(
+                f"Model file contains {type(model)}, expected sklearn model with predict method. "
+                f"Please check that {MODEL_PATH} contains the correct model."
+            )
+        
         _model_cache = model
         _metadata_cache = metadata
         return model, metadata
+    except FileNotFoundError as e:
+        raise FileNotFoundError(f"File not found: {str(e)}")
     except Exception as e:
         raise Exception(f"Error loading model or metadata: {str(e)}")
 
@@ -62,11 +79,22 @@ def predict(model, df, metadata=None):
         tuple: (predictions, probabilities, valid_indices) - List of predictions, probabilities, and valid row indices
     """
     if metadata is None:
-        _, metadata = load_model()
+        model_from_load, metadata = load_model()
+        # If somehow we got the wrong thing, try to fix it
+        if not isinstance(metadata, dict) and hasattr(metadata, 'predict'):
+            # It seems metadata is actually the model - this shouldn't happen but let's handle it
+            raise ValueError(
+                f"Error: Metadata appears to be a model object ({type(metadata)}). "
+                f"This suggests the model and metadata files may be swapped or incorrectly loaded. "
+                f"Please verify that the metadata file contains a dictionary with keys: 'base_features', 'selected_features', 'selected_mask'"
+            )
     
     # Validate metadata structure
     if not isinstance(metadata, dict):
-        raise TypeError(f"Metadata must be a dictionary, got {type(metadata)}")
+        raise TypeError(
+            f"Metadata must be a dictionary, got {type(metadata)}. "
+            f"If you're seeing this error, the metadata file may contain the wrong data type."
+        )
     
     # Get feature information from metadata with error handling
     try:

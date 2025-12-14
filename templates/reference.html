@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}Reference - NIDS System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        padding: 40px;
+    }
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+    }
+    .reference-section {
+        margin-bottom: 40px;
+    }
+    .reference-section h2 {
+        color: #667eea;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+        border-bottom: 2px solid #667eea;
+        padding-bottom: 10px;
+    }
+    .reference-item {
+        background: #f8f9ff;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        border-left: 4px solid #667eea;
+    }
+    .reference-item h3 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+    .reference-item p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 8px;
+    }
+    .reference-item a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .reference-item a:hover {
+        text-decoration: underline;
+    }
+    .citation {
+        font-style: italic;
+        color: #888;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>📚 References</h1>
+
+    <div class="reference-section">
+        <h2>Dataset</h2>
+        <div class="reference-item">
+            <h3>CICIDS2017 Dataset</h3>
+            <p><strong>Description:</strong> A comprehensive dataset for network intrusion detection containing both normal and attack traffic patterns. Unlike traditional synthetic datasets, CIC-IDS-2017 incorporates up-to-date intrusion techniques such as DDoS, Brute Force, Botnet, Infiltration, Web Attacks, and Port Scanning.</p>
+            <p><strong>Source:</strong> Canadian Institute for Cybersecurity (CIC)</p>
+            <p><strong>Citation:</strong></p>
+            <p class="citation">
+                Sharafaldin, I., Lashkari, A. H., & Ghorbani, A. A. (2018). Toward generating a new intrusion detection dataset and intrusion traffic characterization. 
+                In Proceedings of the 4th International Conference on Information Systems Security and Privacy (ICISSP) (pp. 108-116).
+            </p>
+            <p><a href="https://www.unb.ca/cic/datasets/ids-2017.html" target="_blank">🔗 Access Dataset</a></p>
+        </div>
+    </div>
+
+    <div class="reference-section">
+        <h2>Machine Learning Framework</h2>
+        <div class="reference-item">
+            <h3>Scikit-learn</h3>
+            <p><strong>Description:</strong> Machine learning library used for implementing Random Forest classifier and other algorithms.</p>
+            <p class="citation">
+                Pedregosa, F., et al. (2011). Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12, 2825-2830.
+            </p>
+            <p><a href="https://scikit-learn.org/" target="_blank">🔗 Scikit-learn Documentation</a></p>
+        </div>
+    </div>
+
+    <div class="reference-section">
+        <h2>Web Framework</h2>
+        <div class="reference-item">
+            <h3>Flask</h3>
+            <p><strong>Description:</strong> Lightweight Python web framework used for building the NIDS backend API.</p>
+            <p><a href="https://flask.palletsprojects.com/" target="_blank">🔗 Flask Documentation</a></p>
+        </div>
+    </div>
+
+    <div class="reference-section">
+        <h2>Research Papers & Publications</h2>
+        
+        <div class="reference-item">
+            <h3>[1] An Intrusion-Detection Model</h3>
+            <p><strong>Authors:</strong> D. E. Denning</p>
+            <p><strong>Journal:</strong> IEEE Transactions on Software Engineering, vol. 13, no. 2, pp. 222–232, 1987</p>
+            <p><strong>DOI:</strong> <a href="https://doi.org/10.1109/TSE.1987.232894" target="_blank">10.1109/TSE.1987.232894</a></p>
+            <p class="citation">Foundational work on intrusion detection models using statistical deviations from expected system behavior.</p>
+        </div>
+
+        <div class="reference-item">
+            <h3>[2] The 1999 DARPA Offline Intrusion Detection Evaluation</h3>
+            <p><strong>Authors:</strong> R. P. Lippmann, J. W. Haines, D. J. Fried et al.</p>
+            <p><strong>Journal:</strong> Computer Networks, vol. 34, no. 4, pp. 579–595, 2000</p>
+            <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/S1389-1286(00)00139-0" target="_blank">10.1016/S1389-1286(00)00139-0</a></p>
+            <p class="citation">Large-scale evaluation demonstrating the potential of anomaly-based systems for detecting new attack types.</p>
+        </div>
+
+        <div class="reference-item">
+            <h3>[3] Random Forests</h3>
+            <p><strong>Authors:</strong> L. Breiman</p>
+            <p><strong>Journal:</strong> Machine Learning, vol. 45, no. 1, pp. 5–32, 2001</p>
+            <p><strong>DOI:</strong> <a href="https://doi.org/10.1023/A:1010933404324" target="_blank">10.1023/A:1010933404324</a></p>
+            <p class="citation">Seminal paper on Random Forest algorithm, which is the core model used in this NIDS system.</p>
+        </div>
+
+        <div class="reference-item">
+            <h3>[4] On the Combination of Genetic Fuzzy Systems and Pairwise Learning for Improving Detection Rates on Intrusion Detection Systems</h3>
+            <p><strong>Authors:</strong> S. Elhag, A. Fernández et al.</p>
+            <p><strong>Journal:</strong> Expert Systems with Applications, vol. 42, no. 1, pp. 193–202, 2015</p>
+            <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.eswa.2014.07.047" target="_blank">10.1016/j.eswa.2014.07.047</a></p>
+            <p class="citation">Research on improving intrusion detection rates using genetic fuzzy systems and pairwise learning approaches.</p>
+        </div>
+
+        <div class="reference-item">
+            <h3>[5] Intrusion Detection by Machine Learning: A Review</h3>
+            <p><strong>Authors:</strong> C. F. Tsai, Y. F. Hsu et al.</p>
+            <p><strong>Journal:</strong> Expert Systems with Applications, vol. 36, no. 10, pp. 11994–12000, 2009</p>
+            <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.eswa.2009.05.029" target="_blank">10.1016/j.eswa.2009.05.029</a></p>
+            <p class="citation">Comprehensive review of machine learning approaches for intrusion detection systems.</p>
+        </div>
+
+        <div class="reference-item">
+            <h3>[6] Practical Real-Time Intrusion Detection Using Machine Learning Approaches</h3>
+            <p><strong>Authors:</strong> P. Sangkatsanee, N. Wattanapongsakorn, and C. Charnsripinyo</p>
+            <p><strong>Journal:</strong> Computer Communications, vol. 34, no. 18, pp. 2227–2235, 2011</p>
+            <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.comcom.2011.07.001" target="_blank">10.1016/j.comcom.2011.07.001</a></p>
+            <p class="citation">Study on practical implementation of real-time intrusion detection using machine learning methods.</p>
+        </div>
+
+        <div class="reference-item">
+            <h3>[7] Anomaly-Based Network Intrusion Detection: Techniques, Systems and Challenges</h3>
+            <p><strong>Authors:</strong> P. García-Teodoro, J. Díaz-Verdejo, G. Maciá-Fernández, and E. Vázquez</p>
+            <p><strong>Journal:</strong> Computers & Security, vol. 28, no. 1–2, pp. 18–28, 2009</p>
+            <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.cose.2008.08.003" target="_blank">10.1016/j.cose.2008.08.003</a></p>
+            <p class="citation">Detailed survey of anomaly-based intrusion detection outlining challenges including feature redundancy and computational costs.</p>
+        </div>
+
+        <div class="reference-item">
+            <h3>[8] Network Intrusion Detection System: Machine Learning Approach</h3>
+            <p><strong>Authors:</strong> I. Garg, P. Sharma, P. Sharma, V. Sharma, and G. Singh</p>
+            <p><strong>Conference:</strong> International Conference on Advances in Computing, Communication and Technology (ICACCTech), 2024, pp. 1–6</p>
+            <p class="citation">Experimental ML-based IDS workflow using preprocessing, feature encoding, and Recursive Feature Elimination (RFE).</p>
+        </div>
+
+        <div class="reference-item">
+            <h3>[9] A Detailed Analysis of the KDD CUP 99 Dataset</h3>
+            <p><strong>Authors:</strong> M. Tavallaee, E. Bagheri, W. Lu, and A. A. Ghorbani</p>
+            <p><strong>Conference:</strong> IEEE Symposium on Computational Intelligence for Security and Defense Applications (CISDA), 2009, pp. 1–6</p>
+            <p><strong>DOI:</strong> <a href="https://doi.org/10.1109/CISDA.2009.5356528" target="_blank">10.1109/CISDA.2009.5356528</a></p>
+            <p class="citation">Analysis highlighting limitations of legacy KDD-Cup'99 dataset, emphasizing the need for modern datasets like CIC-IDS-2017.</p>
+        </div>
+
+        <div class="reference-item">
+            <h3>[10] Classification Model for Accuracy and Intrusion Detection Using Machine Learning Approach</h3>
+            <p><strong>Authors:</strong> A. Agarwal, P. Sharma, M. Alshehri et al.</p>
+            <p><strong>Journal:</strong> PeerJ Computer Science, vol. 7, p. 437, 2021</p>
+            <p><strong>DOI:</strong> <a href="https://doi.org/10.7717/PEERJCS.437" target="_blank">10.7717/PEERJCS.437</a></p>
+            <p class="citation">Research on classification models for improving accuracy in machine learning-based intrusion detection systems.</p>
+        </div>
+    </div>
+
+    <div class="reference-section">
+        <h2>Tools & Libraries</h2>
+        <div class="reference-item">
+            <h3>Additional Technologies</h3>
+            <p>• <strong>Pandas:</strong> Data manipulation and analysis library</p>
+            <p>• <strong>NumPy:</strong> Numerical computing library</p>
+            <p>• <strong>Joblib:</strong> Model serialization and loading</p>
+            <p>• <strong>DataTables:</strong> Interactive table plugin for results display</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

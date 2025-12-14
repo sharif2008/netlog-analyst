@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NIDS - Network Intrusion Detection System{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-menu a:hover, .nav-menu a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .content {
+            padding: 20px;
+            min-height: calc(100vh - 80px);
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+    <script>
+        // Set active navigation based on current path
+        document.addEventListener('DOMContentLoaded', function() {
+            const path = window.location.pathname;
+            const navLinks = {
+                '/': 'nav-home',
+                '/analysis': 'nav-analysis',
+                '/reference': 'nav-reference',
+                '/acknowledgement': 'nav-acknowledgement'
+            };
+            for (const [pathname, id] of Object.entries(navLinks)) {
+                if (path === pathname || (pathname === '/' && path === '')) {
+                    document.getElementById(id).classList.add('active');
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🛡️ NIDS System</div>
+            <ul class="nav-menu">
+                <li><a href="/" id="nav-home">Home</a></li>
+                <li><a href="/analysis" id="nav-analysis">Analysis</a></li>
+                <li><a href="/reference" id="nav-reference">Reference</a></li>
+                <li><a href="/acknowledgement" id="nav-acknowledgement">Acknowledgement</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
+
